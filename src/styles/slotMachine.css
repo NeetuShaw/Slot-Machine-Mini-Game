@@ -1,0 +1,203 @@
+/* Background */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #2770f7, #a1c1fa); /* Cool blue gradient */
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Slot Machine Container */
+.slot-machine-container {
+  text-align: center;
+  max-width: 900px;
+  width: 500px;
+  height: 450px;
+  background: rgba(16, 16, 16, 0.85); /* Black with transparency */
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(17, 17, 17, 0.6), 0 5px 15px rgba(255, 255, 255, 0.2);
+  border: 2px solid #ffcc00; /* Golden border for premium look */
+  position: relative;
+}
+
+/* Total Balance - Displayed at the top-right of the page */
+.total-balance {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Popups */
+.win-popup,
+.game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+.win-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px; /* Added gap between buttons */
+}
+
+.win-popup button,
+.game-over button {
+  margin-top: 10px;
+  background: linear-gradient(45deg, #ff5722, #ff9800);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.win-popup button:hover,
+.game-over button:hover {
+  background: linear-gradient(45deg, #ff9800, #ff5722);
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(255, 87, 34, 0.8);
+}
+
+/* Title */
+/* Heading */
+.slot-machine-container h1 {
+  font-size: 2rem;
+  margin-top: 30px;
+  font-weight: 600;
+  color: #ffcc00; /* Golden for emphasis */
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* Machine Card */
+.slot-machine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(145deg, #383737, #868585); /* Sleek metallic effect */
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.6), 0 3px 15px rgba(255, 255, 255, 0.3);
+  width: 75%;
+  margin: 0 auto 30px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  border: 3px solid #ff5722; /* Bright orange border */
+}
+/* Reel styles */
+.reel {
+  background: #1f1f1f; /* Darker background for reels */
+  border: 3px solid #ff9800; /* Bright orange border */
+  border-radius: 10px;
+  width: 80px;
+  height: 75px;
+  display: flex; /* Fix: change from 'wrap' to 'flex' for proper layout */
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #fff;
+  animation: none; /* No animation by default */
+  margin-right: 10px; /* Add gap between the reels */
+}
+
+/* Remove the margin-right for the last reel */
+.reel:last-child {
+  margin-right: 0; /* Remove right margin on the last reel */
+}
+
+/* Reel Container */
+.reel-container {
+  display: flex;
+  justify-content: center; /* Center the reels */
+  height: 80px;
+  overflow: hidden;
+}
+
+/* Spinning Animation */
+@keyframes spin {
+  0% {
+    transform: translateY(0); /* Start from initial position */
+  }
+  100% {
+    transform: translateY(-1000px); /* Move reels up by a large value to create spinning effect */
+  }
+}
+
+/* Apply the spinning animation when the reels are spinning */
+.reel.spinning {
+  animation: spin 1.5s linear infinite; /* Add a smooth, continuous spin animation */
+}
+
+/* When the game is over, stop spinning */
+.reel-container.stop-spin .reel {
+  animation: none; /* Stop animation after the spin is done */
+}
+
+
+/* Spinning Animation */
+.reel.spinning {
+  animation: spin 0.2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-20%);
+  }
+}
+
+/* Spinning Button */
+.spin-button {
+  margin-top: 10px;
+  background: linear-gradient(45deg, #ff5722, #ff9800); /* Vibrant orange gradient */
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.spin-button:hover {
+  transform: scale(1.1);
+  /* box-shadow: 0 4px 15px rgba(255, 87, 34, 0.8);  */
+}
+
+.spin-button:active {
+  transform: scale(1);
+  box-shadow: none;
+}
+
+.balance {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #ffcc00;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
